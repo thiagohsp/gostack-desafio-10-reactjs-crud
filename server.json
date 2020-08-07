@@ -1,28 +1,20 @@
 {
   "foods": [
     {
-      "id": 1,
-      "name": "Ao molho",
-      "description": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
-      "price": "19.90",
+      "description": "Filé de peixe grelhado e coberto com molho de camarão, com tomate, pimentões, cheiro verde e leite de coco. Acompanha arroz branco.",
+      "image": "http://cocobambu.com/wp-content/uploads/2018/09/Peixe-ao-Molho-de-Camarão.jpg",
+      "name": "Peixe ao Molho de Camarão",
+      "price": "99.90",
       "available": true,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png"
+      "id": 4
     },
     {
-      "id": 2,
-      "name": "Veggie",
-      "description": "Macarrão com pimentão, ervilha e ervas finas colhidas no himalaia.",
-      "price": "21.90",
+      "price": "150.99",
+      "description": "4 caudas de lagosta gratinada com delicioso molho à base de creme de leite e queijo parmesão. Acompanha arroz branco e batatas gratinadas.",
+      "name": "Lagosta Gratinada",
+      "image": "http://cocobambu.com/wp-content/uploads/2018/09/lagosta-gratinada.jpg",
       "available": true,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png"
-    },
-    {
-      "id": 3,
-      "name": "A la Camarón",
-      "description": "Macarrão com vegetais de primeira linha e camarão dos 7 mares.",
-      "price": "25.90",
-      "available": true,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png"
+      "id": 5
     }
   ]
 }

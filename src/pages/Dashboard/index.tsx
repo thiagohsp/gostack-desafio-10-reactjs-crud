@@ -28,6 +28,9 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     async function loadFoods(): Promise<void> {
       // TODO LOAD FOODS
+      api.get<IFoodPlate[]>('/foods').then(response => {
+        setFoods(response.data);
+      });
     }
 
     loadFoods();
@@ -37,7 +40,19 @@ const Dashboard: React.FC = () => {
     food: Omit<IFoodPlate, 'id' | 'available'>,
   ): Promise<void> {
     try {
+      const { description, image, name, price } = food;
       // TODO ADD A NEW FOOD PLATE TO THE API
+      const response = await api.post('/foods', {
+        description,
+        image,
+        name,
+        price,
+        available: true,
+      });
+
+      setFoods([...foods, response.data]);
+
+      setModalOpen(false);
     } catch (err) {
       console.log(err);
     }
@@ -47,10 +62,35 @@ const Dashboard: React.FC = () => {
     food: Omit<IFoodPlate, 'id' | 'available'>,
   ): Promise<void> {
     // TODO UPDATE A FOOD PLATE ON THE API
+
+    const { description, image, name, price } = food;
+
+    const { id } = editingFood;
+
+    api
+      .put(`/foods/${id}`, {
+        description,
+        image,
+        name,
+        price,
+      })
+      .then(response => {
+        const updatedFood = response.data;
+        const foodIndex = foods.findIndex(item => item.id === id);
+        const foodsArray = [...foods];
+        foodsArray[foodIndex] = updatedFood;
+        setFoods(foodsArray);
+      });
   }
 
   async function handleDeleteFood(id: number): Promise<void> {
     // TODO DELETE A FOOD PLATE FROM THE API
+    api.delete(`/foods/${id}`).then(response => {
+      const foodIndex = foods.findIndex(item => item.id === id);
+      const foodsArray = [...foods];
+      foodsArray.splice(foodIndex, 1);
+      setFoods(foodsArray);
+    });
   }
 
   function toggleModal(): void {
@@ -63,6 +103,8 @@ const Dashboard: React.FC = () => {
 
   function handleEditFood(food: IFoodPlate): void {
     // TODO SET THE CURRENT EDITING FOOD ID IN THE STATE
+    setEditingFood(food);
+    toggleEditModal();
   }
 
   return (
